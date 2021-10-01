@@ -15,7 +15,6 @@ export default {
     meta_url:           "https://novelfull.com/tales-of-demons-and-gods.html",
     lang:               "en",
     publisher:          "novelfull.com",
-    author:             "Mad Snail",
     cachedir:           process.env.HOME+"/cache/novel2epubs",
     outputdir:          process.env.HOME+"/Documents/Epubs/TODAG",
     getNovelMetadata:   novelfull.getNovelMetadata,
