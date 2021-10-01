@@ -25,6 +25,7 @@ promiseNovelMetadata.then( () => {
     novel = novel.getNovelMetadata(novel, path.join(cachedir, 'TODAG-FR-meta.html'));
     novel = getCover(novel);
     console.log( novel );
+
     // =========================================
     // RECUP DES PAGES LISTING CHAPTERS
     // =========================================
@@ -46,6 +47,7 @@ promiseNovelMetadata.then( () => {
             novel=novel.getChaptersProps(novel,chaptersHTML);
         }
         console.log("NOVEL['"+novel.tag+"',page-chapter-list] => "+novel['chapters_props'].length+" chapter(s)");
+        console.log(novel['chapters_props']);
     });
     /*
     // recup chapter
