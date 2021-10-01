@@ -7,7 +7,7 @@ import cheerio from 'cheerio';
 // DEB  functions for WUXIAWORLD.CO
 // ===============================================================================
 
-export default class wuxiaworldco {
+export default class novelfull {
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // extraire les infos de la page principale
@@ -26,11 +26,15 @@ export default class wuxiaworldco {
       novel['author']        =$('div.author').children('span.name').eq(0).text();
     // -- cover
     if ( !novel.cover_url)
-      novel['cover_url']     =$('div.book-img').children('img').eq(0).attr('src');
+      novel['cover_url']     =novel.base_url + $('div.book').children('img').eq(0).attr('src');
     if ( !novel.cover )
       novel['cover']         =novel.cachedir+"/"+novel.tag+"-cover.jpg";
     // -- URLs des sous-pages de listing des chapitres
-    novel['chapters_url']    =[ novel.meta_url ];
+    let chaplist_url_last = $("div#list-chapter").children("ul.pagination").children("li.last").children("a").eq(0).attr("href");
+    let last_list_index = parseInt( chaplist_url_last.replace( /^.*\?page=([0-9]+)$/, '$1' ) );
+    novel['chapters_url'] = Array( last_list_index ).fill().map( (_, index) => novel.meta_url+"?page="+ (index+1) )
+    
+    // novel['chapters_url']    =[ novel.meta_url ];
     // -- chapter list
     novel['chapters_props']  =[];
     // RESULTAT

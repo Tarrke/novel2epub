@@ -1,12 +1,13 @@
 import os from 'os';
 import path from 'path';
-import fs from 'fs';
+import fs, { symlinkSync } from 'fs';
 
 import novels from './novels.js';
 
 import {getCover, getHttpsContent} from './common.js';
+import { exit } from 'process';
 
-let novel = novels['TODAG_FR'];
+let novel = novels['TODAG'];
 
 // Checking directories
 const homedir = os.homedir();
@@ -22,10 +23,10 @@ let metaPath = path.join(novel['cachedir'], novel['tag']+"-meta.html" );
 console.log("MetaDataFile: ", metaPath);
 let promiseNovelMetadata=getHttpsContent( novel['meta_url'], metaPath);
 promiseNovelMetadata.then( () => {
-    novel = novel.getNovelMetadata(novel, path.join(cachedir, 'TODAG-FR-meta.html'));
+    novel = novel.getNovelMetadata(novel, path.join(cachedir, novel['tag']+"-meta.html"));
     novel = getCover(novel);
     console.log( novel );
-
+    process.exit;
     // =========================================
     // RECUP DES PAGES LISTING CHAPTERS
     // =========================================

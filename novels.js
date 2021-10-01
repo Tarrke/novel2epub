@@ -1,24 +1,26 @@
 
 // ============================================================
 // librairie de parsing pour wuxiaworld.co
-// var   wuxiaworldco  = require('./wuxiaworldco.js');
 import wuxiaworldco from './wuxiaworldco.js';
 // librairie de parsing pour xiaowaz.fr
 import xiaowazfr    from './xiaowazfr.js';
+// Parsing library for novelfull.com
+import novelfull from './novelfull.js';
 // ============================================================
 
 export default {
   // Tales Of Demons and Gods
   TODAG: {
     tag:                "TODAG",
-    meta_url:           "https://www.wuxiaworld.co/Tales-of-Demons-and-Gods/",
+    meta_url:           "https://novelfull.com/tales-of-demons-and-gods.html",
     lang:               "en",
-    publisher:          "wuxiaworld.co",
-    cachedir:           process.env.HOME+"/cache/novels",
+    publisher:          "novelfull.com",
+    author:             "Mad Snail",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
     outputdir:          process.env.HOME+"/Documents/Epubs/TODAG",
-    getNovelMetadata:   wuxiaworldco.getNovelMetadata,
-    getChaptersProps:   wuxiaworldco.getChaptersProps,
-    getChapterData:     wuxiaworldco.getChapterData
+    getNovelMetadata:   novelfull.getNovelMetadata,
+    getChaptersProps:   novelfull.getChaptersProps,
+    getChapterData:     novelfull.getChapterData
   },
   // Library Of Heaven's Path
   LHP: {

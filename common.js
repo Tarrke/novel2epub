@@ -41,6 +41,7 @@ export function mkDirByPathSync(targetDir, { isRelativeToScript = false } = {}) 
 // download webpage =================================
 // ==================================================
 export function getHttpsContent(url,filepath,timeout=0){
+    console.log("Getting ", url, " to ", filepath);
     return new Promise(function(resolve, reject){
         setTimeout( function(){
             var req=https.request(url,function(res) {
@@ -88,11 +89,15 @@ export function getCover(novel) {
                     console.log("No cover URL...");
                     delete novel['cover'];
                 }
+            } else {
+                console.log("Cover already exists...");
             }
         } catch(ioerr) {
             console.error("NOVEL['"+novel.tag+"',cover] => cache-file failed");
             console.error(ioerr);
         }
+    } else {
+        console.log("No cover in novel props.");
     }
     return novel;
 }
