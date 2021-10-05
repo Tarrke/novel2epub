@@ -30,6 +30,8 @@ const LIMIT_CHAPTERS_RESET_TIMEOUT=120000;
 // ARGUMENTS
 let NOVEL_TAG="";
 let forceNewContent = false;
+let maxChapterIndex = 0;
+
 //console.log("ARGS  all   >> "+JSON.stringify(process.argv) );
 
 // Command line: has --help
@@ -40,11 +42,21 @@ process.argv.map( item => {
 });
 
 // Command line: has --force
+// Command line: lastChaperIndex
 process.argv.map( item => { 
     if( item.startsWith('--force') ) {
         forceNewContent = true; 
-    } 
+    }
+    if( item.startsWith('--max')) {
+        maxChapterIndex = item.split('=')[1];
+    }
+    if( item.startsWith('--min')) {
+        minChapterIndex = item.split('=')[1];
+    }
 });
+
+
+
 
 const tags= process.argv.filter( item => item.startsWith('--tag=') );
 //console.log("ARGS  tag   >> "+JSON.stringify(tags) );
@@ -116,15 +128,15 @@ promiseNovelMetadata.then(
 
             // LISTING DES CHAPITRES A TELECHARGER
             let promiseChapters=[];
-            let maxChapterIndex = novel['chapters_props'].length;
 
-            // Hack pour tests
-            console.log("Number of Chapters: ", maxChapterIndex);
-            if( novel.chapMax ) {
-                maxChapterIndex = novel.chapMax;
+            if( maxChapterIndex == 0 ) {
+                if( novel.chapMax ) {
+                    maxChapterIndex = novel.chapMax;
+                } else {
+                    maxChapterIndex = novel['chapters_props'].length;
+                }
             }
-            console.log("Number of Chapters to DL: ", maxChapterIndex);
-
+            console.log("Getting chapters 1 to", maxChapterIndex.toString());
             for( let ichapter=0;ichapter<maxChapterIndex;ichapter++ ) {
                 // console.log("Getting chapter ", ichapter);
                 let chapterProps=novel['chapters_props'][ichapter];

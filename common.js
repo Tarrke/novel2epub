@@ -13,10 +13,11 @@ export function usage(message) {
         console.error(message);
         console.error();
     }
-    console.error("Usage: node index.js -- [--help] [--force] --tag=<<NOVEL-TAG>>");
+    console.error("Usage: node index.js -- [--help] [--force] --min=StartChapIndex --max=LastChapIndex --tag=<<NOVEL-TAG>>");
     console.error("\t--help:  display this screen");
     console.error("\t--force: force book regeneration");
     console.error("\t--tag:   tag to use (see novels.js for config)");
+    console.error("\t--max:   stop the scrap at chapter LastChapIndex");
     process.exit(0);
 }
 
