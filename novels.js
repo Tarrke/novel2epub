@@ -26,6 +26,24 @@ export default {
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData
   },
+  // I Alone Level-UP
+  IALU: {
+    tag:                "IALU",
+    meta_url:           "https://novelfull.com/i-alone-level-up.html",
+    ended: true,
+    bookSize: 270,
+    lang:               "en",
+    publisher:          "novelfull.com",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
+    outputdir:          process.env.HOME+"/Documents/Epubs/IALU",
+    // Suppression des paragraphes indésirables
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': ''
+    },
+    getNovelMetadata:   novelfull.getNovelMetadata,
+    getChaptersProps:   novelfull.getChaptersProps,
+    getChapterData:     novelfull.getChapterData
+  },
   // Library Of Heaven's Path
   LHP: {
     tag:                "LHP",
