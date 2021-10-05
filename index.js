@@ -20,7 +20,7 @@ import { getCover, mkDirByPathSync, getHttpsContent, usage } from './common.js';
 
 // REGLAGES
 // -- taille des livres
-const BOOK_CHAPTERS_SIZE=250;
+let BOOK_CHAPTERS_SIZE=250;
 // -- limite de telechargement des chapitres
 // *** (!) pas tous les chapitres d'un coup sinon blocage (!) ***
 const LIMIT_CHAPTERS_SIZE_DOWNLOAD=75;
@@ -55,13 +55,16 @@ if ( tags.length>0 ){
     usage("ERR: missing argument : tag");
 }
 
-
-
 if ( !(NOVEL_TAG in novels) ){
     usage("ERR: unknown tag '"+NOVEL_TAG+"'");
 }
 
 let novel = novels[NOVEL_TAG];
+
+// bookSize override
+if( novel["bookSize"] ) {
+    BOOK_CHAPTERS_SIZE = novel["bookSize"];
+}
 
 // Demarrage ========================================
 console.log("NOVEL-SERIE: "+JSON.stringify(novel));
@@ -123,7 +126,7 @@ promiseNovelMetadata.then(
             console.log("Number of Chapters to DL: ", maxChapterIndex);
 
             for( let ichapter=0;ichapter<maxChapterIndex;ichapter++ ) {
-                console.log("Getting chapter ", ichapter);
+                // console.log("Getting chapter ", ichapter);
                 let chapterProps=novel['chapters_props'][ichapter];
                 try {
                     if ( !fs.existsSync(chapterProps['file']) ) {
@@ -168,7 +171,7 @@ promiseNovelMetadata.then(
                         let book_epub_tmp  =novel['outputdir']+"/"+novel['tag']+"-book-"+sbook+"_TMP.epub";
                         
                         // book non termine
-                        if ( (ibook+1)*BOOK_CHAPTERS_SIZE > nbChapters ) {
+                        if ( !novel.ended && (ibook+1)*BOOK_CHAPTERS_SIZE > nbChapters ) {
                             book_epub=book_epub_tmp;
                         } else {
                             // nettoyage des fichiers temporaires
