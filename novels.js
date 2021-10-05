@@ -38,7 +38,8 @@ export default {
     outputdir:          process.env.HOME+"/Documents/Epubs/IALU",
     // Suppression des paragraphes indésirables
     begins: {
-      '[\\s\\t ]+If you find any[^<]+': ''
+      '[\\s\\t ]+If you find any[^<]+': '',
+      '<h3>Chapter .*?<\/h3>': ''
     },
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
