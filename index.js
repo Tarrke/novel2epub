@@ -1,11 +1,22 @@
-var   http      = require('http');
-var   https     = require('https');
-var   cheerio   = require('cheerio');
-const fs        = require('fs');
-const path      = require('path');
-const epub      = require('epub-gen');
+import http from 'http';
+import https from 'https';
+import cheerio from 'cheerio';
+import fs from 'fs';
+import path from 'path';
+import epub from 'epub-gen';
 
-import { getCover, mkDirByPathSync, getHttpsContent } from './common.js';
+import novels from './novels.js';
+
+// let novels = require('./novels.js');
+
+// var   http      = require('http');
+// var   https     = require('https');
+// var   cheerio   = require('cheerio');
+// const fs        = require('fs');
+// const path      = require('path');
+// const epub      = require('epub-gen');
+
+import { getCover, mkDirByPathSync, getHttpsContent, usage } from './common.js';
 
 // REGLAGES
 // -- taille des livres
@@ -18,104 +29,39 @@ const LIMIT_CHAPTERS_RESET_TIMEOUT=120000;
 
 // ARGUMENTS
 let NOVEL_TAG="";
+let forceNewContent = false;
 //console.log("ARGS  all   >> "+JSON.stringify(process.argv) );
+
+// Command line: has --help
+process.argv.map( item => { 
+    if( item.startsWith('--help') ) {
+        usage(); 
+    } 
+});
+
+// Command line: has --force
+process.argv.map( item => { 
+    if( item.startsWith('--force') ) {
+        forceNewContent = true; 
+    } 
+});
+
 const tags= process.argv.filter( item => item.startsWith('--tag=') );
 //console.log("ARGS  tag   >> "+JSON.stringify(tags) );
 if ( tags.length>0 ){
     NOVEL_TAG=tags[0].replace( /^\-\-tag=/g, '');
     //console.log("TAG >> "+NOVEL_TAG);
 } else {
-    console.error("Usage: npm run exec -- --tag=<<NOVEL-TAG>>");
-    console.error("  missing argument : tag");
-    console.error("--");
-    process.exit(0);
+    usage("ERR: missing argument : tag");
 }
 
-let novels = require('./novels.js');
+
 
 if ( !(NOVEL_TAG in novels) ){
-    console.error("Usage: npm run exec -- --tag=<<NOVEL-TAG>>");
-    console.error("  unknown tag '"+NOVEL_TAG+"'");
-    console.error("--");
-    process.exit(0);
+    usage("ERR: unknown tag '"+NOVEL_TAG+"'");
 }
 
 let novel = novels[NOVEL_TAG];
-
-
-// ==================================================
-// create directory (recursively) ===================
-// ==================================================
-/*
-function mkDirByPathSync(targetDir, { isRelativeToScript = false } = {}) {
-    const sep = path.sep;
-    const initDir = path.isAbsolute(targetDir) ? sep : '';
-    const baseDir = isRelativeToScript ? __dirname : '.';
-
-    return targetDir.split(sep).reduce((parentDir, childDir) => {
-        const curDir = path.resolve(baseDir, parentDir, childDir);
-        try {
-            fs.mkdirSync(curDir);
-        } catch (err) {
-            if (err.code === 'EEXIST') { // curDir already exists!
-                return curDir;
-            }
-
-            // To avoid `EISDIR` error on Mac and `EACCES`-->`ENOENT` and `EPERM` on Windows.
-            if (err.code === 'ENOENT') { // Throw the original parentDir error on curDir `ENOENT` failure.
-                throw new Error(`EACCES: permission denied, mkdir '${parentDir}'`);
-            }
-
-            const caughtErr = ['EACCES', 'EPERM', 'EISDIR'].indexOf(err.code) > -1;
-            if (!caughtErr || caughtErr && curDir === path.resolve(targetDir)) {
-                throw err; // Throw if it's just the last created dir.
-            }
-        }
-
-        return curDir;
-    }, initDir);
-}
-
-// ==================================================
-// download webpage =================================
-// ==================================================
-function getHttpsContent(url,filepath,timeout=0) {
-    return new Promise(function(resolve, reject) {
-        setTimeout( function() {
-            var req=https.request(url,function(res) {
-                // reject on bad status
-                if ( res.statusCode<200 || res.statusCode>=300 ) {
-                    return reject( new Error('statusCode=' + res.statusCode) );
-                }
-                // write data
-
-                // cumulate data
-                var data=[];
-                res.on('data',function(chunk) {
-                    data.push(chunk);
-                });
-                res.on('end',function() {
-                    var buffer=Buffer.concat(data);
-                    fs.writeFileSync( filepath, buffer );
-                    // --debug--
-                    //if (timeout>0)  console.log("GET file '"+filepath+"' with sleep("+timeout+")");
-                    resolve({msg: 'success',url: url,filepath: filepath});
-                });
-            });
-            // si une erreur est survenu
-            req.on('error',function(err) {
-                console.error("GET '"+url+"' -> url.error");
-                reject({msg: 'error',url: url,filepath: filepath});
-            });
-            // liberation
-            req.end();
-        }, timeout );
-    });
-}
-// ==================================================
-*/
-
-
 
 // Demarrage ========================================
 console.log("NOVEL-SERIE: "+JSON.stringify(novel));
@@ -167,7 +113,17 @@ promiseNovelMetadata.then(
 
             // LISTING DES CHAPITRES A TELECHARGER
             let promiseChapters=[];
-            for( let ichapter=0;ichapter<novel['chapters_props'].length;ichapter++ ) {
+            let maxChapterIndex = novel['chapters_props'].length;
+
+            // Hack pour tests
+            console.log("Number of Chapters: ", maxChapterIndex);
+            if( novel.chapMax ) {
+                maxChapterIndex = novel.chapMax;
+            }
+            console.log("Number of Chapters to DL: ", maxChapterIndex);
+
+            for( let ichapter=0;ichapter<maxChapterIndex;ichapter++ ) {
+                console.log("Getting chapter ", ichapter);
                 let chapterProps=novel['chapters_props'][ichapter];
                 try {
                     if ( !fs.existsSync(chapterProps['file']) ) {
@@ -188,22 +144,21 @@ promiseNovelMetadata.then(
             console.log("WAIT     >> "+Math.floor(nbsec/60)+" min "+(nbsec%60) +" sec ...");
             
             // EXECUTION DES TELECHARGEMENT
-            if ( promiseChapters.length > 0 ) {
+            if ( promiseChapters.length > 0 || forceNewContent ) {
                 console.log("NOVEL["+novel['tag']+"] -> new content to parse ...");
                 let promiseAllChapters=Promise.all( promiseChapters );
-                promiseAllChapters.then(
-                    function(files){
+                promiseAllChapters.then( function(_){
                     // chapitres manquants downloaded
 
                     // ==================================================================================
                     // DEB EBOOKs
                     // ==================================================================================
-                    let nbChapters=novel['chapters_props'].length;
-                    for(let ibook=0;ibook<=Math.floor( (nbChapters-1)/BOOK_CHAPTERS_SIZE );ibook++) {
-                        let sbook         =("0" + (ibook+1)).slice(-2);
+                    let nbChapters = maxChapterIndex;
+                    for(let ibook = 0; ibook <= Math.floor( (nbChapters-1)/BOOK_CHAPTERS_SIZE ); ibook++ ) {
+                        let sbook         = ("0" + (ibook+1)).slice(-2);
                         // min et max chapter of book
-                        let ichapmin      =1+(ibook*BOOK_CHAPTERS_SIZE);
-                        let ichapbormax   =(ibook+1)*BOOK_CHAPTERS_SIZE;
+                        let ichapmin      = 1 + (ibook*BOOK_CHAPTERS_SIZE);
+                        let ichapbormax   = Math.min( (ibook+1)*BOOK_CHAPTERS_SIZE, maxChapterIndex);
                         let schapmin=("0000" + ichapmin).slice(-4);
                         let schapbormax=("0000" + ichapbormax).slice(-4);
                         // min et max chapter sur 4 digits pour les noms de fichiers
@@ -211,6 +166,7 @@ promiseNovelMetadata.then(
                         // output file
                         let book_epub      =novel['outputdir']+"/"+novel['tag']+"-book-"+sbook+".epub";
                         let book_epub_tmp  =novel['outputdir']+"/"+novel['tag']+"-book-"+sbook+"_TMP.epub";
+                        
                         // book non termine
                         if ( (ibook+1)*BOOK_CHAPTERS_SIZE > nbChapters ) {
                             book_epub=book_epub_tmp;
@@ -225,6 +181,10 @@ promiseNovelMetadata.then(
                         }
                         // supprimer le precedant pour mieux le re-creer
                         try{
+                            if( forceNewContent && fs.existsSync(book_epub) ) {
+                                fs.unlinkSync(book_epub)
+                            }
+
                             if ( !fs.existsSync(book_epub) ) {
                                 // construction du contenu ebook
                                 console.log("Book["+sbook+","+schapmin+"~"+schapbormax+"] ...");
@@ -243,7 +203,7 @@ promiseNovelMetadata.then(
                                 for(let ichap=ichapmin-1;ichap<ichapmax;ichap++) {
                                     let chapter_prop=novel['chapters_props'][ichap];
                                     // recuperation du markdown
-                                    let chapter_data=novel.getChapterData( chapter_prop, chapter_prop['file'] );
+                                    let chapter_data=novel.getChapterData( chapter_prop, chapter_prop['file'], novel );
                                     // ecriture dans le fichier global
                                     ebook_props.content.push( chapter_data );
                                 }

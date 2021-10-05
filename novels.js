@@ -17,6 +17,11 @@ export default {
     publisher:          "novelfull.com",
     cachedir:           process.env.HOME+"/cache/novel2epubs",
     outputdir:          process.env.HOME+"/Documents/Epubs/TODAG",
+    // Suppression des paragraphes indésirables
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': ''
+    },
+    chapMax: 10,
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData

@@ -65,7 +65,7 @@ export default class wuxiaworldco {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // creer le contenu d'un chapitre
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  static getChapterData(chapter_prop, chapterHTML){
+  static getChapterData(chapter_prop, chapterHTML, novel){
     let contentHTML   =fs.readFileSync(chapterHTML);
     let $             =cheerio.load(contentHTML);
     // PARSING

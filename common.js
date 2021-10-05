@@ -6,6 +6,21 @@ import path  from 'path';
 import epub  from 'epub-gen';
 
 // ==================================================
+// usage ============================================
+// ==================================================
+export function usage(message) {
+    if( message ) {
+        console.error(message);
+        console.error();
+    }
+    console.error("Usage: node index.js -- [--help] [--force] --tag=<<NOVEL-TAG>>");
+    console.error("\t--help:  display this screen");
+    console.error("\t--force: force book regeneration");
+    console.error("\t--tag:   tag to use (see novels.js for config)");
+    process.exit(0);
+}
+
+// ==================================================
 // create directory (recursively) ===================
 // ==================================================
 export function mkDirByPathSync(targetDir, { isRelativeToScript = false } = {}) {
