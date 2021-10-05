@@ -13,6 +13,8 @@ export default {
   TODAG: {
     tag:                "TODAG",
     meta_url:           "https://novelfull.com/tales-of-demons-and-gods.html",
+    bookSize:           250,
+    ended:              false,
     lang:               "en",
     publisher:          "novelfull.com",
     cachedir:           process.env.HOME+"/cache/novel2epubs",
@@ -31,7 +33,6 @@ export default {
     tag:                "IALU",
     meta_url:           "https://novelfull.com/i-alone-level-up.html",
     ended: true,
-    bookSize: 270,
     lang:               "en",
     publisher:          "novelfull.com",
     cachedir:           process.env.HOME+"/cache/novel2epubs",

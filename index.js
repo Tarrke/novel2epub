@@ -21,6 +21,7 @@ import { getCover, mkDirByPathSync, getHttpsContent, usage } from './common.js';
 // REGLAGES
 // -- taille des livres
 let BOOK_CHAPTERS_SIZE=250;
+const BOOK_MIN_SIZE = 75;
 // -- limite de telechargement des chapitres
 // *** (!) pas tous les chapitres d'un coup sinon blocage (!) ***
 const LIMIT_CHAPTERS_SIZE_DOWNLOAD=75;
@@ -173,7 +174,17 @@ promiseNovelMetadata.then(
                         let sbook         = ("0" + (ibook+1)).slice(-2);
                         // min et max chapter of book
                         let ichapmin      = 1 + (ibook*BOOK_CHAPTERS_SIZE);
-                        let ichapbormax   = Math.min( (ibook+1)*BOOK_CHAPTERS_SIZE, maxChapterIndex);
+                        // regular sup born
+                        let ichapbormax   = Math.min( (ibook+1)*BOOK_CHAPTERS_SIZE, nbChapters);
+                        let nextBookEnd   = Math.min( (ibook+2)*BOOK_CHAPTERS_SIZE, nbChapters);
+                        if( nextBookEnd >= nbChapters ) {
+                            // next book is the last one
+                            if( nextBookEnd - ichapbormax < BOOK_MIN_SIZE ) {
+                                // The next book will be too short, the current book will be larger
+                                ichapbormax = nbChapters;
+                            }
+                        }
+
                         let schapmin=("0000" + ichapmin).slice(-4);
                         let schapbormax=("0000" + ichapbormax).slice(-4);
                         // min et max chapter sur 4 digits pour les noms de fichiers
@@ -195,7 +206,7 @@ promiseNovelMetadata.then(
                             }
                         }
                         // supprimer le precedant pour mieux le re-creer
-                        try{
+                        try {
                             if( forceNewContent && fs.existsSync(book_epub) ) {
                                 fs.unlinkSync(book_epub)
                             }
@@ -233,6 +244,10 @@ promiseNovelMetadata.then(
                             console.error("I/O error on book["+ibook+"]");
                             console.error(ioerr);
                             process.exit(301);
+                        }
+
+                        if( ichapbormax == nbChapters ) {
+                            break;
                         }
                     }
                     // ==================================================================================
