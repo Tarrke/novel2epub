@@ -177,7 +177,7 @@ promiseNovelMetadata.then(
                         // regular sup born
                         let ichapbormax   = Math.min( (ibook+1)*BOOK_CHAPTERS_SIZE, nbChapters);
                         let nextBookEnd   = Math.min( (ibook+2)*BOOK_CHAPTERS_SIZE, nbChapters);
-                        if( nextBookEnd >= nbChapters ) {
+                        if( novel.ended && nextBookEnd >= nbChapters ) {
                             // next book is the last one
                             if( nextBookEnd - ichapbormax < BOOK_MIN_SIZE ) {
                                 // The next book will be too short, the current book will be larger
