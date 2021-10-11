@@ -40,7 +40,9 @@ export default {
     // Suppression des paragraphes indésirables
     begins: {
       '[\\s\\t ]+If you find any[^<]+': '',
-      '<h3>Chapter .*?<\/h3>': ''
+      '<h3>Chapter .*?<\/h3>': '',
+      '&lt; Chapter .*': '',
+      '< Chapter .*': ''
     },
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
