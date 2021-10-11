@@ -22,8 +22,21 @@ export default class novelfull {
     // -- base_url
     novel['base_url']        =novel.meta_url.replace( /^(https?:\/\/[^\/]+).*$/i, '$1');
     // -- author
-    if (!novel.author)
-      novel['author']        =$('div.author').children('span.name').eq(0).text();
+    if (!novel.author) {
+      // novel['author']        =$('div.info').children('div a').eq(0).text();
+      novel['author'] = [];
+      $('div.info').children('div').children('a').each( function (index, element) {
+        //console.log("~~~", $(element).attr('href'));
+        if( $(element).attr('href').startsWith('/author/') ) {
+          console.log("Author Found: ", $(element).text());
+          novel['author'].push($(element).text());
+        }
+      });
+      novel['author'] = novel['author'].join(', ');
+      console.log(novel['author']);
+      // console.log();
+      // console.log("Read Author:", novel['author']);
+    }
     // -- cover
     if ( !novel.cover_url)
       novel['cover_url']     =novel.base_url + $('div.book').children('img').eq(0).attr('src');
