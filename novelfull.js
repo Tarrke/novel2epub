@@ -113,8 +113,7 @@ export default class novelfull {
     
     Object.keys(novel.begins).forEach( key => {
       const reg = new RegExp(key);
-      content = content
-        .replace(reg, novel.begins[key])
+      content = content.replace(reg, novel.begins[key])
     })
     /*
     content=content
