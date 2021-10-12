@@ -19,11 +19,30 @@ export default {
     publisher:          "novelfull.com",
     cachedir:           process.env.HOME+"/cache/novel2epubs",
     outputdir:          process.env.HOME+"/Documents/Epubs/TODAG",
-    // Suppression des paragraphes indésirables
+    // Delete undesired <p>
     begins: {
       '[\\s\\t ]+If you find any[^<]+': ''
     },
     chapMax: 10,
+    getNovelMetadata:   novelfull.getNovelMetadata,
+    getChaptersProps:   novelfull.getChaptersProps,
+    getChapterData:     novelfull.getChapterData
+  },
+  // Super Gene
+  SG: {
+    tag:                "SG",
+    meta_url:           "https://novelfull.com/super-gene.html",
+    ended: false,
+    lang:               "en",
+    publisher:          "novelfull.com",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
+    outputdir:          process.env.HOME+"/Documents/Epubs/SG",
+    // Delete undesired <p>
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': '',
+      '<h3>Chapter .*?<\/h3>': '',
+      'Translator:.*': ''
+    },
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData
@@ -37,7 +56,7 @@ export default {
     publisher:          "novelfull.com",
     cachedir:           process.env.HOME+"/cache/novel2epubs",
     outputdir:          process.env.HOME+"/Documents/Epubs/IALU",
-    // Suppression des paragraphes indésirables
+    // Delete undesired <p>
     begins: {
       '[\\s\\t ]+If you find any[^<]+': '',
       '<h3>Chapter .*?<\/h3>': '',
