@@ -57,11 +57,22 @@ export function mkDirByPathSync(targetDir, { isRelativeToScript = false } = {}) 
 // download webpage =================================
 // ==================================================
 export function getHttpsContent(url,filepath,timeout=0){
-    // console.log("Getting ", url, " to ", filepath);
+    console.log("Getting ", url, " to ", filepath);
+    const urlObject = new URL(url)
+
     return new Promise(function(resolve, reject){
         setTimeout( function(){
-            var req=https.request(url,function(res) {
+            var options = {
+                // url: url,
+                hostname: urlObject.hostname,
+                path: urlObject.pathname+urlObject.search,
+                port: urlObject.port,
+                headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1'},
+            }
+            // console.log(options.path)
+            var req=https.request(options, function(res) {
                 // reject on bad status
+                // console.log(res.headers)
                 if ( res.statusCode<200 || res.statusCode>=300 ){
                     return reject( new Error('statusCode=' + res.statusCode) );
                 }
@@ -82,7 +93,7 @@ export function getHttpsContent(url,filepath,timeout=0){
             });
             // si une erreur est survenu
             req.on('error',function(err){
-                console.error("GET '"+url+"' -> url.error");
+                console.error("GET '"+url+"' -> "+err);
                 reject({msg: 'error',url: url,filepath: filepath});
             });
             // liberation

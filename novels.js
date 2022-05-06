@@ -6,6 +6,8 @@ import wuxiaworldco from './wuxiaworldco.js';
 import xiaowazfr    from './xiaowazfr.js';
 // Parsing library for novelfull.com
 import novelfull from './novelfull.js';
+import lightnovelsme from './lightnovelsme.js';
+import readnoveldaily from './readnoveldailycom.js';
 // ============================================================
 
 export default {
@@ -27,6 +29,24 @@ export default {
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData
+  },
+  // Reincarnation of the strongest sword god
+  ROTSSG: {
+    tag:                "ROTSSG",
+    meta_url:           "https://readnoveldaily.com/novel/reincarnation-of-the-strongest-sword-god-203",
+    ended:              true,
+    lang:               "en",
+    publisher:          "readnoveldaily.com",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
+    outputdir:          process.env.HOME+"/Documents/Epubs/ROTSSG",
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': '',
+      '<h3>Chapter .*?<\/h3>': '',
+      'Translator:.*': ''
+    },
+    getNovelMetadata:   readnoveldaily.getNovelMetadata,
+    getChaptersProps:   readnoveldaily.getChaptersProps,
+    getChapterData:     readnoveldaily.getChapterData
   },
   // Super Gene
   SG: {

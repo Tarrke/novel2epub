@@ -32,6 +32,7 @@ const LIMIT_CHAPTERS_RESET_TIMEOUT=120000;
 let NOVEL_TAG="";
 let forceNewContent = false;
 let maxChapterIndex = 0;
+let minChapterIndex = 0;
 
 //console.log("ARGS  all   >> "+JSON.stringify(process.argv) );
 
@@ -90,6 +91,7 @@ mkDirByPathSync(novel['outputdir']);
 // -- metadata
 let metaHTML=novel['cachedir']+"/"+novel['tag']+"-meta.html";
 let metaJSON=novel['cachedir']+"/"+novel['tag']+"-meta.json";
+console.log("MetaURL DL: "+novel['meta_url'])
 let promiseNovelMetadata=getHttpsContent( novel['meta_url'], novel['cachedir']+"/"+novel['tag']+"-meta.html" );
 // -- execution promesse
 promiseNovelMetadata.then(
@@ -119,14 +121,13 @@ promiseNovelMetadata.then(
         var promiseAllPages=Promise.all( promisePages );
         promiseAllPages.then(
             function(resolve){
-
-            // PARSING DES CHAPITRES DANS LES SOUS-PAGES
-            for(let ipage=0;ipage<novel['chapters_url'].length;ipage++) {
-                let chaptersHTML =novel['cachedir']+"/"+novel['tag']+"-chapterlist-"+ipage+".html";
-                novel=novel.getChaptersProps(novel,chaptersHTML);
+                // PARSING DES CHAPITRES DANS LES SOUS-PAGES
+                for(let ipage=0;ipage<novel['chapters_url'].length;ipage++) {
+                    let chaptersHTML =novel['cachedir']+"/"+novel['tag']+"-chapterlist-"+ipage+".html";
+                    console.log("reading chapters props from "+chaptersHTML)
+                    novel=novel.getChaptersProps(novel,chaptersHTML);
             }
             console.log("NOVEL['"+novel.tag+"',page-chapter-list] => "+novel['chapters_props'].length+" chapter(s)");
-
             // LISTING DES CHAPITRES A TELECHARGER
             let promiseChapters=[];
 
@@ -268,7 +269,7 @@ promiseNovelMetadata.then(
     },
     // si echec
     function(err){
-        console.error("novel["+novel.tag+"],meta] => download failed");
+        console.error("novel["+novel.tag+"],meta] => download failed: "+err.url);
         console.error(err);
         process.exit(1);
     });
