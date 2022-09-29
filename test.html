@@ -1,0 +1,400 @@
+
+<!DOCTYPE html><html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport"
+              content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="csrf-param" content="_csrf"><meta name="csrf-token" content="NjM2NGQzZjBmNDk1YjZhYjlkY2Y4ZDNiNWM2ZTBiMDEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="><!-- TODO: Meta --><meta name="title" content="Read Gourmet of Another World - Chapter 1460 - The Silver Armor Guards Show Up online free - Light Novel Full"><meta name="description" content="Read Gourmet of Another World - Chapter 1460 - The Silver Armor Guards Show Up online free from your Mobile, Table, PC... Novel Updates Daily "><meta name="image" content="https://novelfull.com/uploads/thumbs/gourmet-of-another-world-dee09c0141-2239c49aee6b961904acf173b7e4602a.jpg"><meta name="keywords" content="Gourmet of Another World - Chapter 1460 - The Silver Armor Guards Show Up"><title>Read Gourmet of Another World - Chapter 1460 - The Silver Armor Guards Show Up online free - Light Novel Full</title><link rel="preload" href="/web/fonts/RobotoCondensed-Regular.woff" as="font" crossorigin="anonymous" /><link rel="preload" href="/web/fonts/glyphicons-halflings-regular.woff2" as="font" crossorigin="anonymous" /><link rel="shortcut icon" href="/web/images/favicon.ico" type="image/x-icon"><link rel="icon" href="/web/images/favicon.ico" type="image/x-icon"><!--[if lt IE 9]><link rel="stylesheet" href="/web/css/iefix.css"><script defer src="/web/js/html5shiv.min.js"></script><script defer src="/web/js/respond.min.js"></script><![endif]--><script type="text/javascript">
+            var adblock = true;
+            var ajaxSearchUrl = 'https://novelfull.com/ajax-search';
+            var ajaxNovelRateUrl = 'https://novelfull.com/ajax-novel-rate';
+            var ajaxReportChapterUrl = 'https://novelfull.com/ajax-report-chapter';
+            var ajaxUserSettingsUrl = 'https://novelfull.com/ajax-user-settings';
+            var ajaxChapterOptionUrl = 'https://novelfull.com/ajax-chapter-option';
+        </script><!-- <script type="text/javascript" src="/web/js/adframe.js?v=1"></script> --><script type="text/javascript" src="/web/js/plugins.js"></script><script type="text/javascript" src="/web/js/scripts.js"></script><!-- TODO: ExtraScript --><script type="text/javascript">
+        $(document).ready(function() {
+            $navBar = $('.toggle-nav-open');
+            $navBar.on('click', function() {
+                var open = $(this).hasClass('active') ? 'close' : 'open';
+                changeStyle('nav-bar', open);
+                saveStyle('nav-bar', open);
+                $('header').toggle();
+                $('.navbar-breadcrumb').toggle();
+            });
+
+            // Key for the chapter navigation
+            $nextChap = $('#next_chap');
+            $prevChap = $('#prev_chap');
+            $(document).keydown(function (e) {
+                var tag = e.target.tagName.toLowerCase();
+                if (tag == 'input' || tag == 'textarea') return;
+
+                var keypress = e.charCode ? e.charCode : e.keyCode;
+                if (keypress == 39 || keypress == 68) {
+                    if (!$nextChap.attr('disabled')) {
+                        window.location = $nextChap.attr('href');
+                    }
+                } else if (keypress == 37 || keypress == 65) {
+                    if (!$prevChap.attr('disabled')) {
+                        window.location = $prevChap.attr('href');
+                    }
+                }
+            });
+
+            // TODO: Theme
+            $container = $('#container');
+            $chapter = $('#chapter');
+            $chapterContent = $('#chapter-content');
+            var chapterContent = $chapterContent.html();
+            $options = $('#options');
+            $options.show();
+            $optionBackground = $('#option-background');
+            $optionFontFamily = $('#option-font-family');
+            $optionFontSize = $('#option-font-size');
+            $optionLineHeight = $('#option-line-height');
+            $optionFluidSwitch = $('input[type=radio][name=fluid-switch]');
+            $optionNoLineBreak = $('input[type=radio][name=onebreak-switch]');
+            $optionBackground.on('change', function() {
+                changeStyle('background', $(this).val());
+                saveStyle('background', $(this).val());
+            });
+            $optionFontFamily.on('change', function() {
+                changeStyle('font-family', $(this).val());
+                saveStyle('font-family', $(this).val());
+            });
+            $optionFontSize.on('change', function() {
+                changeStyle('font-size', $(this).val());
+                saveStyle('font-size', $(this).val());
+            });
+            $optionLineHeight.on('change', function() {
+                changeStyle('line-height', $(this).val());
+                saveStyle('line-height', $(this).val());
+            });
+            $optionFluidSwitch.on('change', function() {
+                changeStyle('fluid-switch', $(this).val());
+                saveStyle('fluid-switch', $(this).val());
+            });
+            $optionNoLineBreak.on('change', function() {
+                changeStyle('onebreak-switch', $(this).val());
+                saveStyle('onebreak-switch', $(this).val());
+            });
+
+            function changeStyle(style, value) {
+                if (!value) return;
+                switch (style) {
+                    case "background":
+                        $container.css('background-color', value);
+                        if (value == '#232323') {
+                            $container.addClass('dark-background');
+                        } else {
+                            $container.removeClass('dark-background');
+                        }
+                        break;
+                    case "font-family":
+                        $chapterContent.css('font-family', value);
+                        break;
+                    case "font-size":
+                        $chapterContent.css('font-size', value);
+                        break;
+                    case "line-height":
+                        $chapterContent.css('line-height', value);
+                        break;
+                    case "nav-bar":
+                        if ( value == 'open' ) {
+                            $('body').addClass('toggleNav');
+                            $('#container').addClass('active');
+                            $navBar.find('.glyphicon').removeClass('glyphicon-menu-up').addClass('glyphicon-menu-down');
+                            $navBar.addClass('active');
+                        } else {
+                            $navBar.removeClass('active');
+                            $('#container').removeClass('active');
+                            $navBar.find('.glyphicon').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');
+                            $('body').removeClass('toggleNav');
+                        }
+                        break;
+                    case "fluid-switch":
+                        if (value == 'yes') {
+                            $chapter.removeClass('container');
+                            $chapter.addClass('container-fluid');
+                        } else {
+                            $chapter.addClass('container');
+                            $chapter.removeClass('container-fluid');
+                        }
+                        break;
+                    case "onebreak-switch":
+                        if (value == 'yes') {
+                            $chapterContent.html(removeLineBreak($chapterContent.html()));
+                        } else {
+                            $chapterContent.html(addLineBreak(chapterContent));
+                        }
+                        break;
+                }
+            }
+
+            function saveStyle(style, value) {
+                // Save to cookies
+                var chapterStyle = getStyle();
+
+                switch (style) {
+                    case "background":
+                        chapterStyle.background = value;
+                        break;
+                    case "font-family":
+                        chapterStyle.fontFamily = value;
+                        break;
+                    case "font-size":
+                        chapterStyle.fontSize = value;
+                        break;
+                    case "line-height":
+                        chapterStyle.lineHeight = value;
+                        break;
+                    case "nav-bar":
+                        chapterStyle.navBar = value;
+                        break;
+                    case "fluid-switch":
+                        chapterStyle.fluidSwitch = value;
+                        break;
+                    case "onebreak-switch":
+                        chapterStyle.onebreakSwitch = value;
+                        break;
+                }
+                var expDate = new Date();
+                expDate.setTime(expDate.getTime() + (7 * 24 * 60 * 60 * 1000));
+                $.cookie("chapter_style", JSON.stringify(chapterStyle), {path: '/', expires: expDate});
+                var settings = {
+                    style: chapterStyle
+                };
+                $.ajax({
+                    method: "POST",
+                    url: ajaxUserSettingsUrl,
+                    data: {
+                        settings: JSON.stringify(settings)
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                });
+            }
+
+            function addLineBreak(content) {
+                var delimiter = '</p>';
+                if (content.indexOf(delimiter) == -1 || content.indexOf('<br/>') > 5 || content.indexOf('<br>') > 5) {
+                    delimiter = '<br/>';
+                    if (content.indexOf(delimiter) == -1) {
+                        delimiter = '<br>';
+                    }
+                }
+                var contentArray = content.split(delimiter);
+                if (contentArray.length == 1) return content;
+                var newContent = '';
+                for (var i in contentArray) {
+                    var contentItem = contentArray[i].trim();
+                    if (contentItem != '<p>') {
+                        newContent += contentItem;
+                        newContent += '<br>';
+                    } 
+                }
+                newContent = newContent.replace(/(<br\s*\/?>){1,}/gi, '<br>');
+                newContent = newContent.replace(/<p><br><br><\/p>/gi, '');
+                return newContent;
+            }
+
+            function removeLineBreak(content) {
+                var newContent = content;
+                newContent = newContent.replace(/(<br\s*\/?>){1,}/gi, '');
+                return newContent;
+            }
+
+            function getStyle() {
+                var chapterStyle = $.cookie("chapter_style");
+                if (chapterStyle) {
+                    chapterStyle = JSON.parse(chapterStyle);
+                } else {
+                    chapterStyle = {};
+                }
+                if (!chapterStyle.background) chapterStyle.background = "#F4F4F4";
+                if (!chapterStyle.fontFamily) chapterStyle.fontFamily = "Arial, sans-serif";
+                if (!chapterStyle.fontSize) chapterStyle.fontSize = "18px";
+                if (!chapterStyle.lineHeight) chapterStyle.lineHeight = "160%";
+                if (!chapterStyle.fluidSwitch) chapterStyle.fluidSwitch = 'no';
+                if (!chapterStyle.onebreakSwitch) chapterStyle.onebreakSwitch = 'no';
+                if (!chapterStyle.navBar) chapterStyle.navBar = 'close';
+                return chapterStyle;
+            }
+
+            var chapterStyle = getStyle();
+            $optionBackground.val(chapterStyle.background);
+            $optionFontFamily.val(chapterStyle.fontFamily);
+            $optionFontSize.val(chapterStyle.fontSize);
+            $optionLineHeight.val(chapterStyle.lineHeight);
+            if (chapterStyle.navBar == 'open') {
+                //$('body').addClass('toggleNav');
+//                $('#container').addClass('active');
+//                $navBar.find('.glyphicon').removeClass('glyphicon-menu-up').addClass('glyphicon-menu-down');
+//                $navBar.addClass('active');
+//                $('header').hide();
+//                $('.navbar-breadcrumb').hide();
+            }
+            $optionFluidSwitch.val([chapterStyle.fluidSwitch]);
+            $optionNoLineBreak.val([chapterStyle.onebreakSwitch]);
+            //changeStyle('onebreak-switch', chapterStyle.onebreakSwitch);
+
+            // TODO: Chapter Nav
+            $('.chapter_jump').on('change', function() {
+                window.location = $(this).val();
+            });
+
+            // TODO: Novel history
+            var novel = {
+                id: 316,
+                name: 'Gourmet of Another World',
+                url: '/gourmet-of-another-world.html',
+                chapter: {
+                    id: 1034449,
+                    name: 'Chapter 1460 - The Silver Armor Guards Show Up',
+                    url: '/gourmet-of-another-world/chapter-1460-the-silver-armor-guards-show-up.html',
+                }
+            };
+
+            jQuery(document).ready(function () {
+                var limit = 10;
+                var novels = $.cookie("novels_history");
+                if (novels) novels = JSON.parse(novels);
+                else novels = [];
+
+                for (var i in novels) {
+                    var nv = novels[i];
+                    if (nv.id == novel.id) {
+                        novels.splice(i, 1);
+                        break;
+                    }
+                }
+
+                if (novels.length == limit) {
+                    novels.splice(-1,1);
+                }
+                novels.unshift(novel);
+
+                var expDate = new Date();
+                expDate.setTime(expDate.getTime() + (7 * 24 * 60 * 60 * 1000));
+                $.cookie("novels_history", JSON.stringify(novels), {path: '/', expires: expDate});
+            });
+
+            $('#chapter_error').on('click', function() {
+                console.log('chapter_error');
+                var reason = prompt("Please describe error", "");
+                if (reason != null) {
+                    $.ajax({
+                        method: "GET",
+                        url: ajaxReportChapterUrl,
+                        data: {
+                            chapter: $(this).data('chapter-id'),
+                            reason: reason
+                        }
+                    }).done(function (data) {
+                        console.log(data);
+                    });
+                    alert('Thanks report');
+                }
+            });
+
+            chapterJump(novel.id, novel.chapter.id, novel.chapter.url);
+        });
+    </script><link rel="stylesheet" href="/web/css/style.css"><link rel="stylesheet" href="/web/css/rateit.css"><link rel="stylesheet" href="/web/css/custom.css"><link rel="stylesheet" href="/web/css/responsive.css"></head><body><div id="wrapper"><header class="header" style="display: block"><div class="navbar navbar-default navbar-static-top" role="navigation" id="nav"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Show menu</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><h5><a class="header-logo" href="/"
+                           title="Read novel online"><img src="/uploads/thumbs/banner-75b2b7a774-e3b318a6dc29b96947534819abc91cd3.png"></a></h5></div><div class="navbar-collapse collapse"><ul class="control nav navbar-nav "><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title=""><span class="glyphicon glyphicon-list"></span> Novel List <span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="/latest-release-novel"
+                                       title="Latest Release">Latest Release</a></li><li><a href="/hot-novel"
+                                       title="Hot Novel">Hot Novel</a></li><li><a href="/completed-novel"
+                                       title="Completed Novel">Completed Novel</a></li><li><a href="/most-popular"
+                                       title="Most Popular">Most Popular</a></li></ul></li><li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" title=""><span class="glyphicon glyphicon-list"></span> Genre <span class="caret"></span></a><div class="dropdown-menu multi-column"><div class="row"><div class="col-md-4"><ul class="dropdown-menu"><li><a href="/genre/Shounen"
+                                                       title="Shounen">Shounen</a></li><li><a href="/genre/Harem"
+                                                       title="Harem">Harem</a></li><li><a href="/genre/Comedy"
+                                                       title="Comedy">Comedy</a></li><li><a href="/genre/Martial+Arts"
+                                                       title="Martial Arts">Martial Arts</a></li><li><a href="/genre/School+Life"
+                                                       title="School Life">School Life</a></li><li><a href="/genre/Mystery"
+                                                       title="Mystery">Mystery</a></li><li><a href="/genre/Shoujo"
+                                                       title="Shoujo">Shoujo</a></li><li><a href="/genre/Romance"
+                                                       title="Romance">Romance</a></li><li><a href="/genre/Sci-fi"
+                                                       title="Sci-fi">Sci-fi</a></li><li><a href="/genre/Gender+Bender"
+                                                       title="Gender Bender">Gender Bender</a></li><li><a href="/genre/Mature"
+                                                       title="Mature">Mature</a></li><li><a href="/genre/Fantasy"
+                                                       title="Fantasy">Fantasy</a></li></ul></div><div class="col-md-4"><ul class="dropdown-menu"><li><a href="/genre/Horror"
+                                                       title="Horror">Horror</a></li><li><a href="/genre/Drama"
+                                                       title="Drama">Drama</a></li><li><a href="/genre/Tragedy"
+                                                       title="Tragedy">Tragedy</a></li><li><a href="/genre/Supernatural"
+                                                       title="Supernatural">Supernatural</a></li><li><a href="/genre/Ecchi"
+                                                       title="Ecchi">Ecchi</a></li><li><a href="/genre/Xuanhuan"
+                                                       title="Xuanhuan">Xuanhuan</a></li><li><a href="/genre/Adventure"
+                                                       title="Adventure">Adventure</a></li><li><a href="/genre/Action"
+                                                       title="Action">Action</a></li><li><a href="/genre/Psychological"
+                                                       title="Psychological">Psychological</a></li><li><a href="/genre/Xianxia"
+                                                       title="Xianxia">Xianxia</a></li><li><a href="/genre/Wuxia"
+                                                       title="Wuxia">Wuxia</a></li><li><a href="/genre/Historical"
+                                                       title="Historical">Historical</a></li></ul></div><div class="col-md-4"><ul class="dropdown-menu"><li><a href="/genre/Slice+of+Life"
+                                                       title="Slice of Life">Slice of Life</a></li><li><a href="/genre/Seinen"
+                                                       title="Seinen">Seinen</a></li><li><a href="/genre/Lolicon"
+                                                       title="Lolicon">Lolicon</a></li><li><a href="/genre/Adult"
+                                                       title="Adult">Adult</a></li><li><a href="/genre/Josei"
+                                                       title="Josei">Josei</a></li><li><a href="/genre/Sports"
+                                                       title="Sports">Sports</a></li><li><a href="/genre/Smut"
+                                                       title="Smut">Smut</a></li><li><a href="/genre/Mecha"
+                                                       title="Mecha">Mecha</a></li><li><a href="/genre/Yaoi"
+                                                       title="Yaoi">Yaoi</a></li><li><a href="/genre/Shounen+Ai"
+                                                       title="Shounen Ai">Shounen Ai</a></li><li><a href="/genre/History"
+                                                       title="History">History</a></li><li><a href="/genre/Martial"
+                                                       title="Martial">Martial</a></li></ul></div></div></div></li><li class="dropdown" id="options"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Options <span
+                                    class="caret"></span></a><div class="dropdown-menu dropdown-menu-right settings"><form class="form-horizontal"><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label" for="truyen-background">Background</label><div class="col-sm-5 col-md-7"><select class="form-control" id="option-background"><option value="#F4F4F4">Light gray</option><option value="#E9EBEE">Light blue</option><option value="#F4F4E4">Light yellow</option><option value="#EAE4D3">Sepia</option><option value="#D5D8DC">Dark blue</option><option value="#FAFAC8">Dark yellow</option><option value="#EFEFAB">Wood grain</option><option value="#FFF">White</option><option value="#232323">Dark</option></select></div></div><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label"
+                                               for="font-chu">Font family</label><div class="col-sm-5 col-md-7"><select class="form-control"
+                                                                               id="option-font-family"><option value="'Palatino Linotype', serif">Palatino Linotype</option><option value="Bookerly, serif">Bookerly</option><option value="Minion, serif">Minion</option><option value="'Segoe UI', sans-serif">Segoe UI</option><option value="Roboto, sans-serif">Roboto</option><option value="'Roboto Condensed', sans-serif">Roboto Condensed</option><option value="'Patrick Hand', sans-serif">Patrick Hand</option><option value="'Noticia Text', sans-serif">Noticia Text</option><option value="'Times New Roman', serif">Times New Roman</option><option value="Verdana, sans-serif">Verdana</option><option value="Tahoma, sans-serif">Tahoma</option><option value="Arial, sans-serif">Arial</option></select></div></div><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label" for="size-chu">Font size</label><div class="col-sm-5 col-md-7"><select class="form-control" id="option-font-size"><option value="16px">16</option><option value="18px">18</option><option value="20px">20</option><option value="22px">22</option><option value="24px">24</option><option value="26px">26</option><option value="28px">28</option><option value="30px">30</option><option value="32px">32</option><option value="34px">34</option><option value="36px">36</option><option value="38px">38</option><option value="40px">40</option></select></div></div><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label" for="line-height">Line
+                                            height</label><div class="col-sm-5 col-md-7"><select class="form-control" id="option-line-height"><option value="100%">100%</option><option value="120%">120%</option><option value="140%">140%</option><option value="160%">160%</option><option value="180%">180%</option><option value="200%">200%</option></select></div></div><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label">Full frame</label><div class="col-sm-5 col-md-7"><label class="radio-inline" for="fluid-yes"><input type="radio" name="fluid-switch" id="fluid-yes" value="yes"> Yes</label><label class="radio-inline" for="fluid-no"><input type="radio" name="fluid-switch" id="fluid-no" value="no"
+                                                       checked=""> No</label></div></div><div class="form-group form-group-sm"><label class="col-sm-2 col-md-5 control-label">No line break</label><div class="col-sm-5 col-md-7"><label class="radio-inline" for="onebreak-yes"><input type="radio" name="onebreak-switch" id="onebreak-yes"
+                                                       value="yes"> Yes</label><label class="radio-inline" for="onebreak-no"><input type="radio" name="onebreak-switch" id="onebreak-no" value="no"
+                                                       checked=""> No</label></div></div></form></div></li></ul><form class="navbar-form navbar-right"
+                          action="/search"><div class="input-group search-holder"><input class="form-control" id="search-input" type="search"
+                                   name="keyword" placeholder="Search..."
+                                   value=""><div class="input-group-btn"><button class="btn btn-default" type="submit"><span
+                                        class="glyphicon glyphicon-search"></span></button></div></div><div class="list-group list-search-res hide"></div></form><div id="login-status" class="hide"></div></div><!--/.nav-collapse --></div></div></header><main id="container" class=" "
+          style="background-color: #F4F4F4"><div class="navbar-breadcrumb" style="display: block"><div class="container breadcrumb-container"><ol class="breadcrumb"><li><a href=""><span class="glyphicon glyphicon-home"></span></a><a href="/" title="Read novel online"><span>Novel</span></a></li><li><h1><a href="/gourmet-of-another-world.html" title="Gourmet of Another World"><span>Gourmet of Another World</span></a></h1></li><li class="active"><a href="/gourmet-of-another-world/chapter-1460-the-silver-armor-guards-show-up.html"
+                       title="Chapter 1460 - The Silver Armor Guards Show Up"><span>Chapter 1460 - The Silver Armor Guards Show Up</span></a></li></ol></div></div><div id="pf-62aa0e7ecc33130028b7acfb"><script async data-cfasync="false" src="https://platform.pubfuture.com/v1/unit/62aa0e7ecc33130028b7acfb.js?v=2" type="text/javascript"></script></div><div id="chapter" class="chapter container"><div class="row"><div class="col-xs-12"><a class="truyen-title" href="/gourmet-of-another-world.html" title="Gourmet of Another World">Gourmet of Another World</a><h2><a class="chapter-title" href="/gourmet-of-another-world/chapter-1460-the-silver-armor-guards-show-up.html" title="Chapter 1460 - The Silver Armor Guards Show Up"><span class="chapter-text">Chapter 1460 - The Silver Armor Guards Show Up<span></a></h2><hr class="chapter-start"><button type="button" class="btn btn-responsive btn-success toggle-nav-open "><span class="glyphicon glyphicon-menu-up"></span></button><div class="chapter-nav" id="chapter-nav-top"><div class="btn-group"><a class="btn btn-success" href="/gourmet-of-another-world/chapter-1459-luo-sanniang-and-nethery.html"
+           title="Chapter 1459 - Luo Sanniang and Nethery"
+           id="prev_chap"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">Prev Chapter</span></a><button type="button" class="btn btn-success chapter_jump"><span class="glyphicon glyphicon-list-alt"></span></button><a class="btn btn-success" href="/gourmet-of-another-world/chapter-1461-troublemaker-you-will-be-stripped-as-an-example-to-others.html"
+               title="Chapter 1461 - Troublemaker, You Will Be Stripped as an Example to Others"
+               id="next_chap"><span class="hidden-xs">Next Chapter</span><span class="glyphicon glyphicon-chevron-right"></span></a></div></div><hr class="chapter-end"><div id="chapter-content" class="chapter-c" style="font-family: Arial, sans-serif, serif; font-size: 18px; line-height: 160%;"><p></p><p></p><p><div><div><h3>Chapter 1460: The Silver Armor Guards Show Up</h3></div></p><p><strong>Translator: </strong>EndlessFantasy Translation <i></i> <strong>Editor: </strong>EndlessFantasy Translation</p></div><div><div><div><div><div><p>The food ingredients in the Black Turtle Constellation Wok jumped into the air, accompanied by a plume of flame that seemed to explode. Bu Fang clutched the wok with one hand and tossed it, knocking it repeatedly with the stove and filled the air with a clanging noise.</p></div></div><div><div><p>He was very good at wok tossing now. In fact, he could even do it perfectly with his eyes closed. With every toss, the ingredients in the wok leaped and rolled in the air, glistening beautifully with steam churning around them.</p></div></div><div><div><p>Soon, he scooped out the ingredients and put them in a blue-and-white porcelain plate. The dish immediately emanated strange power. In the divine dynasty, ordinary dishes could no longer attract lightning punishment. It didn’t surprise him. The capital was a great world after all, and its Will of the Great Path was much stronger than that of a small world.</p></div></div><div><div><p>To attract lightning punishment, the quality of the dish must be of the highest standard, and Bu Fang thought that perhaps only the dish of a Heaven Divine Chef could achieve that. Summer told him that the Divine Dynasty had two Heaven Divine Chefs. One of them worked in the imperial kitchen, who was the Divine Emperor’s personal chef with noble status.</p></div></div><div><div><p>“The other one is no longer here,” she had said. Judging from the resentful look on her face when she said that, this other one was most likely Mu Hongzi, who had gone to the Netherworld to be a local overlord. That fellow was the previous host, and based on his strength, he was most likely that second Heaven Divine Chef.</p></div></div><div><div><p>If Mu Hongzi was indeed a Heaven Divine Chef, and since he said that he had failed to break through to the God of Cooking’s Realm, it meant that the God of Cooking mentioned by the System should be stronger than a Heaven Divine Chef. Bu Fang was very curious about what realm it really was.</p></div></div><div><div><p>He put the first dish to the side. After cleaning the wok, he added oil into it and sent the Divine flame under it with a flick of his fingers. The oil began to boil, rolling and emitting high heat. While the oil was heating, Bu Fang began to prepare the other ingredients.</p><div><div></div></div><div></div></div></div><div><div><p>He cut the ingredients with the kitchen knife. His motions were precise, and his pace was steady. Sometimes, cooking was a baptism for the spirit, and Bu Fang enjoyed that. Afterward, he took out a flat spatula, smeared it with oil, then poured the batter on it. He then placed the cut ingredients and oysters on it before adding another layer of batter on top of them.</p></div></div><div><div><p>When he was done, he lowered the spatula into the oil. A sizzling noise rang out instantly while the oil spitted and steam began to rise from the ingredients. Bu Fang shook his hand, and the oyster pancake left the spatula to float in the oil, turning and rolling slowly.</p></div></div><div><div><p>Bu Fang was very familiar with the making of the oyster pancake now, and as his cultivation base improved, the dish’s effect increased as well. It was mainly because of the ingredients. In the beginning, it was just a simple snack, but now, it was comparable to a divine dish. A bite from it would significantly enhance the recovery of one’s divine sense and energy.</p></div></div><div><div><div class="ads ads-holder ads-middle text-center"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2371791870283090"
+     crossorigin="anonymous"></script><!-- full thich ung --><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2371791870283090"
+     data-ad-slot="2009706278"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins><script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><p>Looking at the oyster pancakes bobbing in the oil, Bu Fang was suddenly lost in thought. He recalled another dish, which was similar to the oyster pancake but a very different dish. He considered cooking it after this.</p></div></div><div><div><p>He scooped out all the pancakes and drained them of oil, then went on to cook other dishes. A variety of delicacies—including Buddha Jumps Over the Wall Soup, Boiled Fish, and Marble Wok Fish—were slowly but meticulously cooked by him. There was also the Dried Pot Cabbage, which destroyed the Mo’s residence. It was ordered by Luo Sanniang, who proved to be a woman who loved challenging things.</p></div></div><div><div><p>After all the dishes ordered by the girls outside were ready, Bu Fang carried them and walked toward the dining area. The curtain was lifted, the bell tinkled, and everyone in the restaurant turned their eyes over. He and Whitey walked out of the kitchen with dishes in hand.</p></div></div><div><div><p>The girls, who were chattering, were attracted as the aroma of the dishes in the air was too delicious. They were also surprised when they saw the colorful dishes in Bu Fang’s hands. In addition to the delicacies, those cold drinks and desserts were what attracted them the most.</p></div></div><div><div><p>Even Luo Sanniang, who was staring at Nethery, was attracted. It was the first time she had ever seen such dishes.</p><div><div></div></div><div></div></div></div><div><div><p>“This is your Buddha Jumps Over the Wall Soup, Marble Wok Fish, and Boiled Fish…”</p></div></div><div><div><p>“This is your Matcha ice cream and cream cheesecake…”</p></div></div><div><div><p>“This is your spicy crayfish. Don’t eat too many as you will suffer from excessive internal heat.”</p></div></div><div><div><p>Bu Fang handed the dishes out one by one. Luo Sanniang had ordered Dried Pot Cabbage and Buddha Jumps Over the Wall Soup. She looked at Bu Fang, then removed the soup’s lid. Golden light spread from it instantly, while a rich fragrance attracted her. She swallowed, and her appetite was aroused. After taking a deep breath, she began to enjoy the food.</p></div></div><div><div><p>Bu Fang was just a Spirit Divine Chef, but the dishes he cooked did not taste less delicious than that of an Earth Divine Chef’s. Besides, they were all unique in their own ways, which made them much interesting and tastier than the monotonous dishes cooked by those Earth Divine Chefs.</p></div></div><div><div><p>When Luo Sanniang saw one of her best friends was happily enjoying an ice cream, she felt like having one as well.</p></div></div><div><div><p>Bu Fang carried a plate of oyster pancakes and came in front of an elegant woman. She had an ordinary face, but he found her somewhat familiar. “Summer?” he asked. However, she did not reply. Instead, she took the plate from him, grabbed a pancake with her hand despite the hot oil, and took a bite from it.</p></div></div><div><div><p>The crispy pancake crunched between her teeth, and a tasty aroma spread from it in an instant. The woman’s eyes curved like crescents as a faint smile brushed her lips. Without a doubt, she was Summer. Bu Fang never thought that she would come here to eat with a different face. Shaking his head, he turned and walked toward the kitchen.</p><div><div></div></div></div></div><div><div><p>“Mister Bu, congratulations on the opening of your restaurant!”</p><div></div></div></div><div><div><p>Just as he turned, someone laughed heartily behind him. King Pingyang’s son, Hu Lu, strode through the door with a warm smile. He nodded at him. Though they got off to a bad start, they were friends now.</p></div></div><div><div><div class="ads ads-holder ads-middle text-center"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2371791870283090"
+     crossorigin="anonymous"></script><!-- full thich ung --><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2371791870283090"
+     data-ad-slot="2009706278"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins><script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><p>“Have a seat. What do you like to eat? The menu is on the wall behind you,” Bu Fang said.</p></div></div><div><div><p>“Haha! I just came to congratulate you on your opening, but now my appetite is aroused by all that delicious smell. Well, I think I’d better try your cooking,” Hu Lu said, taking a deep breath. Then, he seated himself in a chair and glanced at the menu. “What is this ice cream?”</p></div></div><div><div><p>“The thing that girl is eating.” Bu Fang raised a hand and pointed at a girl in the distance, who was sticking out her tongue and licking at her ice cream. She was the daughter of an aristocratic family in the capital and Luo Sanniang’s best friend, whose father was said to be a senior officer in the court. However, the way she ate her food was somewhat… horrible.</p></div></div><div><div><p>Hu Lu glanced at her and twitched the corner of his mouth. “It looks… delicious. I want one. Also, recommend me a dish, Mister Bu. I want to enjoy an unforgettable meal. After this, I’ll begin to cultivate in seclusion, and I have no idea how long it will take. When I come out, I may already be a God,” he said.</p></div></div><div><div><p>Bu Fang paused, then nodded. After considering it for a while, he went into the kitchen. Before too long, he came back out with a dish of ice cream and a bowl of spicy crayfishes. They seemed to be two conflicting cuisines. It felt somewhat bizarre to eat ice cream after the spicy crayfishes, but since Hu Lu wanted an unforgettable meal, Bu Fang thought nothing was more unforgettable than the clash of ice and fire.</p></div></div><div><div><p>Bu Fang picked up a crayfish and showed how it was eaten. Hu Lu’s eyes lit up instantly. He peeled one himself and shoved it into his mouth. The tenderness of the meat made his pupils constrict, and then the spiciness exploded in his mouth, making him feel as if he was enveloped in flames. The feeling was almost like… orgasm!</p><div><div></div></div><p><i>1</i></p></div></div><div><div><p>Then, he stuck out his tongue, which was so hot that it was as if flames were burning on it, and took a lick of the ice cream. The cold sensation immediately suppressed the heat. The feeling was… unprecedented, and it made him shudder. If he had to describe the feeling, he could only think of one word: exciting! It was as though a song of ice and fire was being played in his head.</p></div></div><div><div><p>As Bu Fang watched the young master enjoy the spicy crayfish and ice cream, he could not help but twitch the corner of his mouth. At the same time, a piece of background music rang in his head: “Summer, summer passed quietly, leaving behind a little secret. I kept it in my heart, in my heart, and I can’t tell you…”</p></div></div><div><div><p>Bu Fang shook his head with a strange look on his face. Was he infected by Mu Hongzi? If not, why would he think of this song? For a moment, he seemed to see the young master holding the ice cream in one hand and the crayfish in the other, twisting his waist with the song with an intoxicated look on his face…</p><div></div></div></div><div><div><p>He quickly turned away. At this moment, Luo Sanniang waved at him from a distance. He went to her. Nethery fixed her eyes on him from the other table.</p></div><div></div></div><div><div><p>Luo Sanniang rose to her feet, leaned over to Bu Fang’s ear, and said in a soft, seductive voice, “Bu Fang… I want… ice cream…” When she said that, she glanced at Nethery from the corners of her eyes and gave her a provoking smile.</p></div></div><div><div><div class="ads ads-holder ads-middle text-center"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2371791870283090"
+     crossorigin="anonymous"></script><!-- full thich ung --><ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2371791870283090"
+     data-ad-slot="2009706278"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins><script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><p>Nethery kept a straight face.</p></div></div><div><div><p>Bu Fang gave Luo Sanniang a strange look and said, “Why can’t you talk properly?”</p><div><div></div></div><p><i>2</i></p></div></div><div><div><p>That left Luo Sanniang speechless. Bu Fang then turned and entered the kitchen. Before long, he came back out with ice cream and gave it to her.</p></div></div><div><div><p>For a moment, the atmosphere in the restaurant was somewhat fiery. The scene had attracted many customers in the building. They stepped into it with curiosity and were immediately attracted by the smell. So they ordered some dishes, tasted them, and were deeply captivated.</p></div></div><div><div><p>…</p></div></div><div><div><p>Bu Fang put away the source stones, the corners of his mouth curving upward slightly. He was a little excited—he was finally in business again. Now, as long as the turnover reached the target, he would be able to achieve a breakthrough. He was one step closer to his dream of becoming a God of Cooking.</p><div></div></div></div><div><div><p>Suddenly, the System’s serious voice rang in his head. It had been a long time since he heard it.</p></div><div></div></div><div><div><p>‘Congratulations on completing the temporary task. The reward will be issued now… Please receive it, Host.’</p></div></div><div><div><p>Bu Fang’s eyes lit up. The System’s reward was finally here.</p></div></div><div><div><p>In his spirit sea, two additional divine power liquid drops emerged over the previously empty spot on the God of Cooking’s Menu. The round liquid drops spun slowly, emitting a bright light. At the same time, a familiar colorful fruit appeared.</p></div></div><div><div><p>‘The Fruit of Law!’</p></div></div><div><div><p>Just as Bu Fang was immersing in the joy of receiving his reward, an uproar broke out among the people watching curiously outside the restaurant.</p></div></div><div><div><p>Accompanied by a clanging sound, several figures approached and blocked the restaurant door. A terrible aura filled the air. These experts were all clad in silver armor with the character ‘Silver’ branded on their chests.</p></div></div><div><div><p>The onlookers scattered in panic. These men were the Silver Armor Guard of the imperial guard!</p></div></div><div><div><p>“The Silver Armor Guard has official business here. Those who are not involved are advised to leave at once,” the leading expert of the Silver Armor Guard said, his eyes cold and hard.</p></div></div><div><div><p>His words caused a stir in the restaurant immediately. Luo Sanniang and the others turned pale.</p></div><div></div></div><div><div><p>“The Silver Armor Guards are here? Has the imperial concubine finally chosen to strike, ignoring the Divine Emperor’s decree?!”</p></div></div></div></div></div><div  align="left">
+        If you find any errors ( broken links, non-standard content, etc.. ), Please let us know < report chapter > so we can fix it as soon as possible. </div></div><hr class="chapter-end"><div class="chapter-nav" id="chapter-nav-top"><div class="btn-group"><a class="btn btn-success" href="/gourmet-of-another-world/chapter-1459-luo-sanniang-and-nethery.html"
+           title="Chapter 1459 - Luo Sanniang and Nethery"
+           id="prev_chap"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">Prev Chapter</span></a><button type="button" class="btn btn-success chapter_jump"><span class="glyphicon glyphicon-list-alt"></span></button><a class="btn btn-success" href="/gourmet-of-another-world/chapter-1461-troublemaker-you-will-be-stripped-as-an-example-to-others.html"
+               title="Chapter 1461 - Troublemaker, You Will Be Stripped as an Example to Others"
+               id="next_chap"><span class="hidden-xs">Next Chapter</span><span class="glyphicon glyphicon-chevron-right"></span></a></div></div><div class="text-center"><button type="button" class="btn btn-warning" id="chapter_error" data-chapter-id="1034449"><span class="glyphicon glyphicon-exclamation-sign"></span> Report chapter
+    </button><!--    <button type="button" class="btn btn-info" id="chapter_comment">--><!--        <span class="glyphicon glyphicon-comment"></span> Comment--><!--    </button>--></div><div class="bg-info text-center visible-md visible-lg box-notice">
+    Tip: You can use left, right, A and D keyboard keys to browse between chapters.
+</div><div class="col-xs-12"></div><div id="pf-62e5f776f58e070028e21f8b"><script async data-cfasync="false" src="https://platform.pubfuture.com/v1/unit/62e5f776f58e070028e21f8b.js?v=2" type="text/javascript"></script></div></div></div></div></main><footer class="footer"><div class="container"><div class="hidden-xs col-sm-5"><p>
+	&copy; Copyright NovelFull.Com. All Rights Reserved.</p></div><ul class="col-xs-12 col-sm-7 list-unstyled"><li class="text-right pull-right"><a href="/contact" title="Contact">Contact</a> -
+                    <a href="/tos" title="ToS">ToS</a> -
+                    <a href="/sitemap.xml" target="_blank">Sitemap</a><a
+                        class="backtop" href="#" rel="nofollow" title=""><span
+                            class="glyphicon glyphicon-upload"></span></a></li></ul></div></footer></div></body><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101484867-2"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-101484867-2');
+</script></html>

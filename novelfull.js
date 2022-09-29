@@ -87,34 +87,53 @@ export default class novelfull {
     let $             =cheerio.load(contentHTML);
     // PARSING
     let content = $('div#chapter-content');
+    
 
     content=content.html();
+    if( 1 == 0 ) {
+      console.log("read file : " + chapterHTML);
+      console.log("#################");
+      console.log(content);
+    }
     content = content
-      // tout remettre sur une seule ligne
-      .replace( /\n/gm, '__LINE__')
-      // remplacer les lignes de titre
-      .replace( /&nbsp\;/g,                             ' ')
-      // supprimer les lignes contenant des liens
-      .replace( /.*<a .*>(.*?)<\/a>.*/gm,               '__LINK__')
-      // supprimer les lignes contenant des scripts
-      .replace( /<script[^>]*>.*?<\/script>/g,        '__SCRIPT__')
-      // supprimer les commentaires
-      .replace( /<!--(.*?)-->/g,                       '__COMMENT__')
-      // Suppression des pubs
-      .replace( /<ins[^>]*>[^<]*<\/ins>/g,              '__PUB__')
-      // Suppression des p Chapter
-      .replace( /<p>Chapter [^<]+?<\/p>/,               '')
-
-      // Transformation multi ligne
-      .replace( /<br\/?>/g,                             '__LINE__')
-      .replace( '__LINE__',                             '\n')
-      .replace( /<\/p><p>/g, '</p>\n<p>')
-      ;
+    // tout remettre sur une seule ligne
+    .replace( /[\n\r]/gm, '__LINE__')
+    // remplacer les lignes de titre
+    .replace( /&nbsp\;/g,                             ' ')
+    .replace( /&#x2019\;/gm,                          "'")
+    // supprimer les lignes contenant des liens
+    .replace( /<a .*>(.*?)<\/a>/gm,               '__LINK__')
+    // supprimer les lignes contenant des scripts
+    .replace( /<script[^>]*>.*?<\/script>/g,          '__SCRIPT__')
+    // supprimer les commentaires
+    .replace( /<!--(.*?)-->/g,                        '__COMMENT__')
+    // Suppression des pubs
+    .replace( /<ins[^>]*>[^<]*<\/ins>/g,              '__PUB__')
+    // Suppression des p Chapter
+    .replace( /<p>Chapter [^<]+?<\/p>/,               '')
+    .replaceAll( '<div>', '')
+    .replaceAll( '</div>', '')
+    // Transformation multi ligne
+    .replace( /<br\/?>/g,                             '__LINE__')
+    .replace( /<\/p><p>/g, '<\/p>__LINE__<p>')
+    .replaceAll( '__LINE__',                             '\n')
+    ;
     
+    if( 1 == 0 ) {
+      console.log("#################");
+      console.log(content);
+    }
+
     Object.keys(novel.begins).forEach( key => {
       const reg = new RegExp(key);
       content = content.replace(reg, novel.begins[key])
     })
+
+    if( 1 == 0 ) {
+      console.log("#################");
+      console.log(content);
+    }
+
     /*
     content=content
       .replace( /[\s\t ]+If you find any[^<]+/, '')
@@ -128,11 +147,17 @@ export default class novelfull {
       .replace( /^[\s\t ]*$/g,                         '')
       .replace( /^(.+)$/g,                             '<p>$1</p>')
       .replace( /<p>[\s\t ]*?<\/p>/g,                  '')
-
+      
       
       // Suppression des marqueurs inutiles maintenant
       .replace( /__(.*?)__/g, '')
       ;
+
+      if( 1 == 0 ) {
+        console.log("#################");
+        console.log(content);
+      }
+
     // CHAPTER DATA
     let chapter_data={
       title:   chapter_prop.title,

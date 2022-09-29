@@ -33,6 +33,8 @@ let NOVEL_TAG="";
 let forceNewContent = false;
 let maxChapterIndex = 0;
 let minChapterIndex = 0;
+let forceBookName = false;
+let bookNameForced = "debug"
 
 //console.log("ARGS  all   >> "+JSON.stringify(process.argv) );
 
@@ -55,10 +57,17 @@ process.argv.map( item => {
     if( item.startsWith('--min')) {
         minChapterIndex = item.split('=')[1];
     }
+    if( item.startsWith('--out') ) {
+        forceBookName = true;
+        if( item.split('=').length > 1 ) {
+            bookNameForced = item.split('=')[1];
+        }
+    }
 });
 
 
-
+console.log("Min : " + minChapterIndex);
+console.log("Max : " + maxChapterIndex);
 
 const tags= process.argv.filter( item => item.startsWith('--tag=') );
 //console.log("ARGS  tag   >> "+JSON.stringify(tags) );
@@ -138,15 +147,15 @@ promiseNovelMetadata.then(
                     maxChapterIndex = novel['chapters_props'].length;
                 }
             }
-            console.log("Getting chapters 1 to", maxChapterIndex.toString());
-            for( let ichapter=0;ichapter<maxChapterIndex;ichapter++ ) {
+            console.log("Getting chapters "+ minChapterIndex.toString() + " to ", maxChapterIndex.toString());
+            for( let ichapter = minChapterIndex; ichapter < maxChapterIndex; ichapter++ ) {
                 // console.log("Getting chapter ", ichapter);
-                let chapterProps=novel['chapters_props'][ichapter];
+                let chapterProps = novel['chapters_props'][ichapter];
                 try {
                     if ( !fs.existsSync(chapterProps['file']) ) {
                         // telecharger par block limite
-                        let nbDownload  =promiseChapters.length;
-                        let timeout     =Math.floor(nbDownload/LIMIT_CHAPTERS_SIZE_DOWNLOAD)*LIMIT_CHAPTERS_RESET_TIMEOUT + (nbDownload%LIMIT_CHAPTERS_SIZE_DOWNLOAD);
+                        let nbDownload  = promiseChapters.length;
+                        let timeout     = Math.floor(nbDownload/LIMIT_CHAPTERS_SIZE_DOWNLOAD)*LIMIT_CHAPTERS_RESET_TIMEOUT + (nbDownload%LIMIT_CHAPTERS_SIZE_DOWNLOAD);
                         promiseChapters.push( getHttpsContent(chapterProps['url'],chapterProps['file'],timeout) );
                     }
                 } catch(ioerr) {
@@ -170,26 +179,36 @@ promiseNovelMetadata.then(
                     // ==================================================================================
                     // DEB EBOOKs
                     // ==================================================================================
-                    let nbChapters = maxChapterIndex;
-                    for(let ibook = 0; ibook <= Math.floor( (nbChapters-1)/BOOK_CHAPTERS_SIZE ); ibook++ ) {
+                    let nbChapters = maxChapterIndex - minChapterIndex + 1;
+                    let idMaxChapter = maxChapterIndex;
+                    console.log("idMaxChapter : "+maxChapterIndex);
+                    let nbBooks = Math.floor((maxChapterIndex - minChapterIndex + 1)/BOOK_CHAPTERS_SIZE );
+                    for(let ibook = 0; ibook <= nbBooks; ibook++ ) {
                         let sbook         = ("0" + (ibook+1)).slice(-2);
                         // min et max chapter of book
-                        let ichapmin      = 1 + (ibook*BOOK_CHAPTERS_SIZE);
+                        let ichapmin      = (1 + (ibook*BOOK_CHAPTERS_SIZE) >= minChapterIndex) ? 1 + (ibook*BOOK_CHAPTERS_SIZE):minChapterIndex;
                         // regular sup born
-                        let ichapbormax   = Math.min( (ibook+1)*BOOK_CHAPTERS_SIZE, nbChapters);
-                        let nextBookEnd   = Math.min( (ibook+2)*BOOK_CHAPTERS_SIZE, nbChapters);
+                        //let ichapbormax   = Math.min( ichapmin + (ibook  )*BOOK_CHAPTERS_SIZE, idMaxChapter);
+                        let ichapbormax = Math.min( (Math.trunc((ichapmin-1)/BOOK_CHAPTERS_SIZE)+1)*250, idMaxChapter );
+                        //let nextBookEnd   = Math.min( ichapmin + (ibook+1)*BOOK_CHAPTERS_SIZE, idMaxChapter);
+                        let nextBookEnd   = Math.min( ichapbormax + BOOK_CHAPTERS_SIZE, idMaxChapter);
                         // Novel is ended AND Next book is the last one AND Next book is too short
                         if( novel.ended    && nextBookEnd >= nbChapters && nextBookEnd - ichapbormax < BOOK_MIN_SIZE ) {
                             // The next book will be too short, the current book will be larger
-                            ichapbormax = nbChapters;
+                            ichapbormax = idMaxChapter;
                         }
 
                         let schapmin=("0000" + ichapmin).slice(-4);
                         let schapbormax=("0000" + ichapbormax).slice(-4);
                         // min et max chapter sur 4 digits pour les noms de fichiers
-                        let ichapmax=Math.min( ichapbormax, nbChapters );
+                        let ichapmax=Math.min( ichapbormax, idMaxChapter );
+                        console.log(ichapmin-1);
+                        console.log(ichapmax+" : "+ichapbormax+" - "+idMaxChapter);
                         // output file
                         let book_epub      =novel['outputdir']+"/"+novel['tag']+"-book-"+sbook+".epub";
+                        if( forceBookName ) {
+                            book_epub = novel['outputdir']+"/"+novel['tag']+"-"+bookNameForced+"-"+sbook+".epub";
+                        }
                         let book_epub_tmp  =novel['outputdir']+"/"+novel['tag']+"-book-"+sbook+"_TMP.epub";
                         
                         // book non termine
@@ -231,6 +250,7 @@ promiseNovelMetadata.then(
                                     let chapter_data=novel.getChapterData( chapter_prop, chapter_prop['file'], novel );
                                     // ecriture dans le fichier global
                                     ebook_props.content.push( chapter_data );
+                                    console.log("done chapter "+ (ichap+1) + " -> " + chapter_data.data.length + " octets");
                                 }
                                 // generation du book
                                 new epub(ebook_props).promise.then( function() {

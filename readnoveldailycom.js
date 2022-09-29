@@ -101,7 +101,6 @@ export default class readnoveldaily {
     let content = $('div.c-content').remove('div.clearfix');
 
     content=content.html();
-    console.log(content)
     content = content
       // tout remettre sur une seule ligne
       .replace( /\n/gm, '__LINE__')
@@ -125,10 +124,6 @@ export default class readnoveldaily {
       .replace( '__LINE__',                             '\n')
       .replace( /<\/p><p>/g, '</p>\n<p>')
       ;
-
-    console.log("~~~~~~~~~~")
-    console.log(content)
-    console.log("~~~~~~~~~~")
 
     Object.keys(novel.begins).forEach( key => {
       const reg = new RegExp(key);
@@ -157,9 +152,7 @@ export default class readnoveldaily {
       title:   chapter_prop.title,
       data:    content
     };
-    console.log("~~~~~~~~~~")
-    console.log(content)
-    console.log("~~~~~~~~~~")
+
     // RESULTAT
     return chapter_data;
   }

@@ -30,6 +30,25 @@ export default {
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData
   },
+  // Gourmet of Another World
+  GAW: {
+    tag:                "GAW",
+    meta_url:           "https://novelfull.com/gourmet-of-another-world.html",
+    ended: true,
+    lang:               "en",
+    publisher:          "novelfull.com",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
+    outputdir:          process.env.HOME+"/Documents/Epubs/GAW",
+    // Delete undesired <p>
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': '',
+      '<div><h3>Chapter .*?<\/div>': '',
+      '(<p>)*Translator:.*': ''
+    },
+    getNovelMetadata:   novelfull.getNovelMetadata,
+    getChaptersProps:   novelfull.getChaptersProps,
+    getChapterData:     novelfull.getChapterData
+  },
   // Reincarnation of the strongest sword god
   ROTSSG: {
     tag:                "ROTSSG",
