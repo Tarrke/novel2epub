@@ -42,8 +42,8 @@ export default {
     // Delete undesired <p>
     begins: {
       '[\\s\\t ]+If you find any[^<]+': '',
-      '<div><h3>Chapter .*?<\/div>': '',
-      '(<p>)*Translator:.*': ''
+      '<h3>Chapter .*?<\/h3>': '',
+      '(<p>)*(<strong>)*Translator:.*': ''
     },
     getNovelMetadata:   novelfull.getNovelMetadata,
     getChaptersProps:   novelfull.getChaptersProps,
@@ -61,7 +61,7 @@ export default {
     begins: {
       '[\\s\\t ]+If you find any[^<]+': '',
       '<h3>Chapter .*?<\/h3>': '',
-      'Translator:.*': ''
+      '(<p>)*(<strong>)*Translator:.*': ''
     },
     getNovelMetadata:   readnoveldaily.getNovelMetadata,
     getChaptersProps:   readnoveldaily.getChaptersProps,

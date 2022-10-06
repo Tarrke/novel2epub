@@ -238,7 +238,7 @@ promiseNovelMetadata.then(
                                     author:     novel.author,
                                     publisher:  novel.publisher,
                                     cover:      novel.cover,
-                                    tocTitle:   "chapters",
+                                    tocTitle:   "Chapters",
                                     lang:       novel.lang,
                                     output:     book_epub,
                                     content:    []
