@@ -30,6 +30,26 @@ export default {
     getChaptersProps:   novelfull.getChaptersProps,
     getChapterData:     novelfull.getChapterData
   },
+  // I Might be a Fake Cultivator
+  IMFC: {
+    tag:                "IMFC",
+    meta_url:           "https://novelfull.com/i-might-be-a-fake-cultivator.html",
+    ended: true,
+    lang:               "en",
+    publisher:          "novelfull.com",
+    cachedir:           process.env.HOME+"/cache/novel2epubs",
+    outputdir:          process.env.HOME+"/Documents/Epubs/IMFC",
+    // Delete undesired <p>
+    begins: {
+      '[\\s\\t ]+If you find any[^<]+': '',
+      '<h3>Chapter .*?<\/h3>': '',
+      '(<p>)*(<strong>)*Translator:.*': ''
+    },
+    getNovelMetadata:   novelfull.getNovelMetadata,
+    getChaptersProps:   novelfull.getChaptersProps,
+    getChapterData:     novelfull.getChapterData
+  },
+  
   // Gourmet of Another World
   GAW: {
     tag:                "GAW",
