@@ -111,12 +111,12 @@ export default class novelfull {
     .replace( /<ins[^>]*>[^<]*<\/ins>/g,              '__PUB__')
     // Suppression des p Chapter
     .replace( /<p>Chapter [^<]+?<\/p>/,               '')
-    .replaceAll( '<div>', '')
-    .replaceAll( '</div>', '')
+    .replace( /<div>/g, '')
+    .replace( /<\/div>/g, '')
     // Transformation multi ligne
     .replace( /<br\/?>/g,                             '__LINE__')
     .replace( /<\/p><p>/g, '<\/p>__LINE__<p>')
-    .replaceAll( '__LINE__',                             '\n')
+    .replace( /__LINE__/g,                             '\n')
     ;
     
     if( 1 == 0 ) {
